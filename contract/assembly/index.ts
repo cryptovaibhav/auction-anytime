@@ -12,7 +12,7 @@ const enum ItemState {
   Listed,
   Auction,
   Sold,
-  None
+  All
 };
 
 @nearBindgen
@@ -28,6 +28,7 @@ export class AuctionItem {
   owner: string;
   voters: Array<string>;
   state: ItemState;
+  auction_start_time: string;
 
   constructor() {
     const rng = new RNG<u32>(1, u32.MAX_VALUE);
@@ -38,6 +39,7 @@ export class AuctionItem {
     this.owner = "None";
     this.state = ItemState.Listed;
     this.voters = [];
+    this.auction_start_time = "";
   }
 }
 
@@ -55,16 +57,21 @@ export function list_item(name: string, desc: string, min_bid: u128, image_url: 
   itemsMap.set(item.id, item);
   itemsVector.push(item.id);
   logging.log("item listed successfully: " + item.id.toString());
+  //logging.log(Date.now().toString());
 
   return item.id;
 }
+
+// export function log_current_time(): void {
+//   logging.log(Date.now().toString());
+// }
 
 export function get_all_items(state: ItemState): Array<AuctionItem> {
   const itemsArray = new Array<AuctionItem>();
 
   for (let index = 0; index < itemsVector.length; index++) {
     const item = itemsMap.getSome(itemsVector[index]);
-    if (state == ItemState.None || item.state == state) {
+    if (state == ItemState.All || item.state == state) {
       logging.log(item);
       itemsArray.push(item);
     }

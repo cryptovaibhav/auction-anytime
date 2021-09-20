@@ -15,7 +15,8 @@ function NextItem(props) {
                             <h3>Current votes: </h3>
                             <h1 className="card-title pricing-card-title">{ props.item.currentVotes }</h1>
                             <ul className="list-unstyled mt-3 mb-4">
-                                <li>Minimum Bid: { props.item.minBid }</li>                        
+                                <li>Minimum Bid: { props.item.minBid }</li>
+                                <li>Owner: { props.item.owner } </li>
                             </ul>
                         </div>
                     </div>  

@@ -40,7 +40,7 @@ class Main extends React.Component {
         console.log("computing highest voted item");
 
         //update highest voted Item
-        var highestVotes = 0;
+        var highestVotes = -1;
         var highestVotedItem = null;
         items.forEach(item => {
             if(item.state != ItemStateEnum.Auction && item.state != ItemStateEnum.Sold){
@@ -73,7 +73,7 @@ class Main extends React.Component {
 
   getHomePageItems(){
     var currentItem = this.state.displayItems.filter(item => item.state == ItemStateEnum.Auction)[0];
-    var previousItem = this.state.displayItems.filter(item => item.state == ItemStateEnum.Sold)[0];
+    var previousItem = this.state.displayItems.filter(item => item.state == ItemStateEnum.Sold).at(-1);
     var nextItem = this.state.displayItems.filter(item => item.isHighestVoted)[0];
 
     var items = [previousItem, currentItem, nextItem];

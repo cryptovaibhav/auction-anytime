@@ -1,6 +1,14 @@
-const CONTRACT_NAME = process.env.CONTRACT_NAME ||'anytime-auction'
+const CONTRACT_NAME = process.env.CONTRACT_NAME ||'anytime-auction.cryptovaibhav.testnet'
 
 function getConfig(env) {
+  return {
+    networkId: 'testnet',
+    nodeUrl: 'https://rpc.testnet.near.org',
+    contractName: CONTRACT_NAME,
+    walletUrl: 'https://wallet.testnet.near.org',
+    helperUrl: 'https://helper.testnet.near.org',
+    explorerUrl: 'https://explorer.testnet.near.org',
+  }
   switch (env) {
 
   case 'production':

@@ -9,9 +9,11 @@ export const ItemStateEnum = {
 }
 
 const nearConfig = getConfig(process.env.NODE_ENV || 'development')
+console.log(nearConfig);
 
 // Initialize contract & set global variables
 export async function initContract() {
+  console.log(nearConfig);
   // Initialize connection to the NEAR testnet
   const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, nearConfig))
 

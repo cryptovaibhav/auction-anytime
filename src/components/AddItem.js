@@ -35,7 +35,7 @@ function AddItem(props){
                     setShowNotification(false);
                     props.onAddItemClick(item);
                     history.push("/myListings");
-                }, 11000);
+                }, 5000);
             } else {
                 console.log("Add failed. Try again!!");
                 setShowLoader(false);

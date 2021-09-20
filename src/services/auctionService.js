@@ -1,6 +1,7 @@
 import { utils } from 'near-api-js';
 const DEFAULT_GAS = 300000000000000;
 import placeholder from "../assets/placeholder.jpeg";
+import cronService from './cronService';
 
 function getAllItems(itemState, callback){
     window.contract.get_all_items({ state: itemState })
@@ -69,16 +70,22 @@ function listItem(name, desc, minBid, imageURL, callback){
         });
 }
 
-function startAuction(){
-    window.contract.start_auction({})
-        .then(result => {
-            result ? console.log("success") : console.log("failed");
-            return result;
-        })
-        .catch(ex => {
-            console.log("Item add failed");
-            throw ex;
-        });
+function startAuction(callback){
+    cronService.scheduleCronJob(callback);
+
+    // window.contract.start_auction({})
+    //     .then(result => {
+    //         result ? console.log("success") : console.log("failed");
+    //         return result;
+    //     })
+    //     .catch(ex => {
+    //         console.log("Item add failed");
+    //         throw ex;
+    //     });
+}
+
+function getJobStatus(callback){
+    cronService.getJobStatus(callback);
 }
 
 export default {
@@ -86,5 +93,6 @@ export default {
     voteForItem: voteForItem, 
     bidForItem: bidForItem, 
     listItem: listItem,
-    startAuction: startAuction
+    startAuction: startAuction,
+    getJobStatus: getJobStatus
 }

@@ -19,11 +19,13 @@ function CurrentItem(props) {
                 console.log("Bid added successfully");
                 setShowLoader(false);
                 setShowNotification(true);
+                setCurrBid(bid);
+                setHighestBidderLocal(window.accountId);
 
                 setTimeout(() => {
                     setShowNotification(false);
                     props.handleNewBid();
-                }, 11000);
+                }, 5000);
             } else {
                 console.log("adding bid failed. Please try again");
                 setShowLoader(false);
@@ -53,6 +55,7 @@ function CurrentItem(props) {
                                 <ul className="list-unstyled mt-1 mb-2">
                                     <li>Minimum Bid: { props.item.minBid } NEAR</li>
                                     <li>Highest Bidder: { props.item.highestBidder }</li>
+                                    <li>Owner: { props.item.owner } </li>
                                 </ul>
 
                                 <p>Place your bid (in NEAR): </p>
@@ -71,7 +74,7 @@ function CurrentItem(props) {
                     }
                 </div>
              : <div className="col-md align-self-center">
-                    <p>No item is currently undergoing auction</p>
+                    <p>No item is currently undergoing auction. Please check back in some time. </p>
                 </div>  
             }
             { showNotification && 
