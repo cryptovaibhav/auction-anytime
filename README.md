@@ -1,7 +1,9 @@
 Anytime-Auction
 ==================
 
-Submission for Metabuidl Hackathon. 
+Submission for Metabuidl Hackathon.  
+
+Challenges - CODAME, Muti, Croncat. 
   
 Welcome to Auction Anytime, All the time.   
 We are a community driven 24 * 7 * 365 auction platform. Community users can add their items for auction, vote for their favorite items and bid of the items which they like.  
