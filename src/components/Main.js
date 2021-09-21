@@ -2,7 +2,7 @@ import '../styles/App.css';
 import "../vendor/bootstrap.min.css";
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   NavLink
@@ -101,8 +101,9 @@ class Main extends React.Component {
 
   render(){
     const homePageItems = this.getHomePageItems();
+    console.log(process.env.PUBLIC_URL);
     return (
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <div className="App">
 
             <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
