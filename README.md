@@ -1,7 +1,17 @@
-anytime-auction
+Anytime-Auction
 ==================
 
-This [React] app was initialized with [create-near-app]
+Submission for Metabuidl Hackathon 
+
+Welcome to Auction Anytime, All the time. 
+We are a community driven 24 * 7 * 365 auction platform. Community users can add their items for auction, vote for their favorite items and bid of the items which they like. 
+Currently the auction runs at a frequency of 5 mins i.e. every 5 mins, the highest bidder of the item wins the item and the highest voted item goes up for auction. For setting the frequency, we use croncat to schedule the smart contract. 
+
+Many more interesting features to come. 
+Stay Tuned. 
+
+You can either use the hosted version on: https://cryptovaibhav.github.io/auction-anytime/
+or follow the below steps to setup your local copy. 
 
 
 Quick Start
@@ -90,13 +100,3 @@ Troubleshooting
 ===============
 
 On Windows, if you're seeing an error containing `EPERM` it may be related to spaces in your path. Please see [this issue](https://github.com/zkat/npx/issues/209) for more details.
-
-
-  [React]: https://reactjs.org/
-  [create-near-app]: https://github.com/near/create-near-app
-  [Node.js]: https://nodejs.org/en/download/package-manager/
-  [jest]: https://jestjs.io/
-  [NEAR accounts]: https://docs.near.org/docs/concepts/account
-  [NEAR Wallet]: https://wallet.testnet.near.org/
-  [near-cli]: https://github.com/near/near-cli
-  [gh-pages]: https://github.com/tschaub/gh-pages
