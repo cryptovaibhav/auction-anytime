@@ -64,7 +64,7 @@ function ListItem(props){
                                 { props.item.state == 2 && <li><b>Sold to: </b>{ props.item.highestBidder }</li>}
                             </ul>
                         </div>
-                        { window.location.pathname=="/listings" && 
+                        { window.location.hash=="#/listings" && 
                             <button type="button" 
                                     className="btn btn-lg btn-outline-primary" 
                                     disabled={ props.item.voters.includes(window.accountId) || props.item.owner == window.accountId } 

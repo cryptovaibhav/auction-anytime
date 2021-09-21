@@ -3,7 +3,7 @@ import ListItem from "./ListItem";
 
 function Listing(props) {
     const getTitle = () => {
-        return window.location.pathname == "/listings" 
+        return window.location.hash == "#/listings" 
                     ? "Vote for your favorite items here. The highest voted item goes live on auction next once the timer runs out"
                     : "See all the items which you have listed or purchased so far on this page"; 
     };
