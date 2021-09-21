@@ -3,15 +3,15 @@ Anytime-Auction
 
 Submission for Metabuidl Hackathon 
 
-Welcome to Auction Anytime, All the time. \n 
-We are a community driven 24 * 7 * 365 auction platform. Community users can add their items for auction, vote for their favorite items and bid of the items which they like. \n
-Currently the auction runs at a frequency of 5 mins i.e. every 5 mins, the highest bidder of the item wins the item and the highest voted item goes up for auction. For setting the frequency, we use croncat to schedule the smart contract. \n
+Welcome to Auction Anytime, All the time. 
+We are a community driven 24 * 7 * 365 auction platform. Community users can add their items for auction, vote for their favorite items and bid of the items which they like.
+Currently the auction runs at a frequency of 5 mins i.e. every 5 mins, the highest bidder of the item wins the item and the highest voted item goes up for auction. For setting the frequency, we use croncat to schedule the smart contract.
 
-Many more interesting features to come. \n
-Stay Tuned. \n
+Many more interesting features to come.
+Stay Tuned.
 
-You can either use the hosted version on: https://cryptovaibhav.github.io/auction-anytime/ \n
-or follow the below steps to setup your local copy. \n
+You can either use the hosted version on: https://cryptovaibhav.github.io/auction-anytime/ 
+or follow the below steps to setup your local copy.
 
 
 Quick Start
