@@ -11,6 +11,12 @@
   font-weight: bold;
 }
 
+.btn-outline-primary:disabled {
+  color: grey !important;
+  background-color: transparent;
+  border-color: grey;
+}
+
 .page-header{
   width: 80%;
 }

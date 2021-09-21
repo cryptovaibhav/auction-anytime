@@ -19,8 +19,9 @@ function getAllItems(itemState, callback){
                     state: parseInt(item.state), 
                     minBid: item.starting_bid == '0' ? item.starting_bid : utils.format.formatNearAmount(item.starting_bid), 
                     highestBid: item.highest_bid == '0' ? item.highest_bid : utils.format.formatNearAmount(item.highest_bid), 
-                    highestBidder: item.highest_bidder, 
-                    owner: item.owner
+                    highestBidder: item.highest_bidder,
+                    owner: item.owner,
+                    voters: item.voters
                 };
                 mappedItems.push(mappedItem);
             });

@@ -47,15 +47,15 @@ function CurrentItem(props) {
                     { showLoader ? <Loader /> : 
                         <div className="card mb-4 box-shadow">
                             <img className="card-img-top img-border" src={ props.item.img } alt="Card image cap" />
-                            <p className="card-text">{ props.item.name }</p>
+                            <p className="card-text font-weight-bold">{ props.item.name }</p>
                             <p className="card-text">{ props.item.desc }</p>
                             <div className="card-body">
                                 <h3>Current bid: </h3>
                                 <h1 className="card-title pricing-card-title">{ props.item.highestBid } <small className="text-muted">NEAR</small></h1>
                                 <ul className="list-unstyled mt-1 mb-2">
-                                    <li>Minimum Bid: { props.item.minBid } NEAR</li>
-                                    <li>Highest Bidder: { props.item.highestBidder }</li>
-                                    <li>Owner: { props.item.owner } </li>
+                                    <li><b>Minimum Bid: </b>{ props.item.minBid } NEAR</li>
+                                    <li><b>Highest Bidder: </b>{ props.item.highestBidder }</li>
+                                    <li><b>Owner: </b>{ props.item.owner } </li>
                                 </ul>
 
                                 <p>Place your bid (in NEAR): </p>
@@ -68,7 +68,12 @@ function CurrentItem(props) {
                                     <div className="col-2"></div>
                                 </div>
 
-                                <button type="button" className="btn btn-lg btn-outline-primary" onClick={handleSubmit}>Submit</button>
+                                <button type="button" 
+                                        className="btn btn-lg btn-outline-primary" 
+                                        disabled={ props.item.owner == window.accountId } 
+                                        onClick={handleSubmit}
+                                        title={ props.item.owner == window.accountId ? "Cannot bid for your own item" : "Click to bid for this item"}
+                                >Submit</button>
                             </div>
                         </div>
                     }
