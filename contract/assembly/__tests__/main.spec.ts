@@ -1,9 +1,15 @@
-// import { setGreeting } from '../old_index'
-// import { storage, Context } from 'near-sdk-as'
+import { AuctionItem, get_all_items, ItemState, list_item } from '../index'
+import { storage, Context, u128 } from 'near-sdk-as'
 
-// describe('Greeting ', () => {
-//   it('should be set and read', () => {
-//     setGreeting('hello world')
-//     storage.get<string>(Context.sender)
-//   })
-// })
+describe('Auction ', () => {
+  it('should create an item', () => {
+    const item_id = list_item("test", "test", u128.Zero, "");
+    expect(item_id).toBeGreaterThan(0, "should return an id > 0")
+  });
+  it("should return all items", () => {
+        list_item("test", "test", u128.Zero, "");
+        const items: Array<AuctionItem> = get_all_items(ItemState.All);
+        expect(items.length).toBe(1, "should contain only 1 message");
+  });
+
+})

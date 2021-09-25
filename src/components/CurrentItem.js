@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import Loader from "./Loader";
 import auctionService from '../services/auctionService';
 import nearIcon from "../assets/logo-black.svg";
+import Notification from './Notification';
 
 function CurrentItem(props) {
     const [showLoader, setShowLoader] = useState(false);
-    const [showNotification, setShowNotification] = React.useState(false);
-    const [transactionStatus, setTransactionStatus] = React.useState(true);
-    const [message, setMessage] = React.useState("Added vote successfully");
+    const [showNotification, setShowNotification] = useState(false);
+    const [transactionStatus, setTransactionStatus] = useState(true);
+    const [message, setMessage] = useState("Added bid successfully");
 
     const handleSubmit = () => {
         setShowLoader(true);
@@ -29,9 +30,9 @@ function CurrentItem(props) {
             } else {
                 console.log("adding bid failed. Please try again");
                 setShowLoader(false);
-                setTransactionStatus(false);
-                setMessage("Adding Vote failed. Please try again");
                 setShowNotification(true);
+                setTransactionStatus(false);
+                setMessage("Adding bid failed. Please try again");
 
                 setTimeout(() => {
                     setShowNotification(false);

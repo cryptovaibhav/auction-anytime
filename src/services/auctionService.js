@@ -29,6 +29,7 @@ function getAllItems(itemState, callback){
         })
         .catch(ex => {
             console.log("getting items failed");
+            callback([]);
             throw ex;
         });
 }
@@ -41,6 +42,7 @@ function voteForItem(itemId, callback){
         })
         .catch(ex => {
             console.log("Voting item failed");
+            callback(false);
             throw ex;
         });
 }
@@ -54,6 +56,7 @@ function bidForItem(itemId, bid, callback){
         })
         .catch(ex => {
             console.log("Item add failed");
+            callback(false);
             throw ex;
         });
 }

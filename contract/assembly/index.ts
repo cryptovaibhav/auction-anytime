@@ -8,7 +8,7 @@ import {
   ContractPromiseBatch
 } from "near-sdk-as";
 
-const enum ItemState {
+export const enum ItemState {
   Listed,
   Auction,
   Sold,
@@ -57,14 +57,9 @@ export function list_item(name: string, desc: string, min_bid: u128, image_url: 
   itemsMap.set(item.id, item);
   itemsVector.push(item.id);
   logging.log("item listed successfully: " + item.id.toString());
-  //logging.log(Date.now().toString());
 
   return item.id;
 }
-
-// export function log_current_time(): void {
-//   logging.log(Date.now().toString());
-// }
 
 export function get_all_items(state: ItemState): Array<AuctionItem> {
   const itemsArray = new Array<AuctionItem>();
@@ -84,13 +79,9 @@ export function vote_for_item(item_id: u32): bool {
   const voter = context.sender;
   const item = itemsMap.getSome(item_id);
 
-  if (item.state != ItemState.Listed) {
-    logging.log("Item is already under auction or sold");
-    return false;
-  } else if (item.voters.includes(voter)) {
-    logging.log("One person can vote only once");
-    return false;
-  }
+  assert(item && item.id, "The item you are trying to find is no longer present");
+  assert(item.state == ItemState.Listed, "Item is already under auction or sold");
+  assert(!item.voters.includes(voter), "One person can vote only once");
 
   item.current_votes += 1;
   item.voters.push(voter);
@@ -101,27 +92,17 @@ export function vote_for_item(item_id: u32): bool {
 
 export function add_bid(item_id: u32): bool {
   logging.log("attached deposit is: " + context.attachedDeposit.toString());
+  assert(context.attachedDeposit > u128.Zero, "Bid should be greater than zero");
+  
   const bid = context.attachedDeposit;
   const bidder = context.sender;
   const item = itemsMap.getSome(item_id);
 
-  if (item.state != ItemState.Auction) {
-    logging.log("Can't bid on an item which is not in auction");
-    revert_payment(bidder, context.attachedDeposit);
-    return false;
-  }
-  if (bid <= item.highest_bid) {
-    logging.log("Need to bid higher than current highest bid of : " + item.highest_bid.toString());
-    logging.log("reverting transaction. Transferring " + bid.toString() + " back to owner");
-    revert_payment(bidder, bid);
-    return false;
-  }
-  if(bid <= item.starting_bid){
-    logging.log("Need to bid higher than minimum bid of : " + item.starting_bid.toString());
-    logging.log("reverting transaction. Transferring " + bid.toString() + " back to owner");
-    revert_payment(bidder, bid);
-    return false;
-  }
+  assert(context.attachedDeposit > u128.Zero, "Bid should be greater than zero");
+  assert(item.state == ItemState.Auction, "Can't bid on an item which is not in auction");
+  assert(bid > item.highest_bid, "Need to bid higher than current highest bid of : " + item.highest_bid.toString());
+  assert(bid > item.starting_bid, "Need to bid higher than minimum bid of : " + item.starting_bid.toString());
+
   item.highest_bid = bid;
   item.highest_bidder = bidder;
 
@@ -160,10 +141,7 @@ export function start_auction(): bool {
 // will get called once auction time is over
 function transfer_ownership(item_id: u32): bool {
   const item = itemsMap.getSome(item_id);
-  if (item.state != ItemState.Auction) {
-    logging.log("Can't do it for an item which is not in Auction");
-    return false;
-  }
+  assert(item.state == ItemState.Auction, "Can't transfer item which is not under auction");
 
   item.state = ItemState.Sold;
   item.owner = item.highest_bidder;
@@ -174,9 +152,9 @@ function transfer_ownership(item_id: u32): bool {
   return true;
 }
 
-function revert_payment(sender: string, amount: u128): void{
+function revert_payment(receiver: string, amount: u128): void{
   logging.log("transferring tokens: " + amount.toString());
-  const to_owner = ContractPromiseBatch.create(sender);
+  const to_owner = ContractPromiseBatch.create(receiver);
   to_owner.transfer(amount);
 }
 
