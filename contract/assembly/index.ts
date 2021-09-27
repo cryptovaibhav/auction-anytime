@@ -163,3 +163,17 @@ export function delete_item(item_id: u32): bool {
   itemsVector.pop();
   return true;
 }
+
+export function delete_all(): bool {
+  var item_id = 0;
+  for (let index = 0; index < itemsVector.length; index++) {
+    item_id = itemsVector.pop();
+    itemsMap.delete(item_id);
+  }
+
+  return true;
+}
+
+export function get_item_count(): u32{
+  return itemsVector.length;
+}

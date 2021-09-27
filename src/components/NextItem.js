@@ -5,7 +5,7 @@ function NextItem(props) {
         
         <>
         { props.item
-            ?   <div className="col-md align-self-center">
+            ?   <div className="col-md-3 align-self-center">
                     <div className="card mb-4 box-shadow opaque">
                         <h3 className="card-text">Next Item</h3>
                         <img className="card-img-top img-border" src={ props.item.img } alt="Card image cap" />
@@ -16,7 +16,7 @@ function NextItem(props) {
                             <h1 className="card-title pricing-card-title">{ props.item.currentVotes }</h1>
                             <ul className="list-unstyled mt-3 mb-4">
                                 <li><b>Minimum Bid: </b>{ props.item.minBid }</li>
-                                <li><b>Owner: </b>{ props.item.owner } </li>
+                                <li title={props.item.owner}><b>Owner: </b>{ props.item.owner } </li>
                             </ul>
                         </div>
                     </div>  
